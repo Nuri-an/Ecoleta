@@ -11,6 +11,7 @@ class PointsController {
 
         const points = await connection('points')
             .join('point_items', 'points.id', '=', 'point_items.point_id')
+            .whereIn('point_items.item_id', parsedItems)
             .where('city', String(city))
             .where('uf', String(uf))
             .distinct()

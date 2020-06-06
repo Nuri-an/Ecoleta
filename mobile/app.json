@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "HelloWorld",
+    "name": "Ecoleta",
     "slug": "mobile",
     "platforms": [
       "ios",
@@ -14,6 +14,10 @@
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
+    },
+    "androidStatusBar": {
+      "backgroundColor": "#f6a822",
+      "hidden": true
     },
     "updates": {
       "fallbackToCacheTimeout": 0
