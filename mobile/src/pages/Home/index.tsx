@@ -50,7 +50,6 @@ const Home = () => {
       selectedUf,
       selectedCity
     });
-    console.log(selectedCity);
   }
 
 
