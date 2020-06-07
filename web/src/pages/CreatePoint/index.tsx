@@ -1,11 +1,14 @@
 import React, { useEffect, useState, ChangeEvent, FormEvent } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FiArrowLeft } from 'react-icons/fi';
+import { FiArrowLeft, FiAlertCircle } from 'react-icons/fi';
 
 import Dropzone from '../../components/Dropzone';
+import Success from '../../components/Sucesso';
 
 import { Map, TileLayer, Marker } from 'react-leaflet';
 import { LeafletMouseEvent } from 'leaflet';
+
+import * as yup from 'yup';
 
 import api from '../../services/api';
 import axios from 'axios';
@@ -29,6 +32,37 @@ interface IBGECity {
 }
 
 const CreatedPoint = () => {
+    const Validation = yup.object().shape({
+        name: yup
+            .string()
+            .required(),
+        email: yup
+            .string()
+            .email()
+            .required(),
+        whatsapp: yup
+            .number()
+            .required(),
+        uf: yup
+            .string()
+            .max(2)
+            .min(2)
+            .required(),
+        city: yup
+            .string()
+            .required(),
+        latitude: yup
+            .number()
+            .required(),
+        longitude: yup
+            .number()
+            .required(),
+        items: yup
+            .array()
+            .required(),
+    });
+
+
     const [items, setItems] = useState<Item[]>([]);
     const [ufs, setUfs] = useState<string[]>([]);
     const [cities, setCities] = useState<string[]>([]);
@@ -45,6 +79,7 @@ const CreatedPoint = () => {
     const [selectedPosition, setSelectedPosition] = useState<[number, number]>([0, 0]);
     const [selectedUf, setSelectedUf] = useState('0');
     const [selectedCity, setSelectedCity] = useState('0');
+    const [errorForm, setErrorForm] = useState('1');
 
     const history = useHistory();
 
@@ -84,6 +119,7 @@ const CreatedPoint = () => {
         });
     }, [selectedUf]);
 
+    
     function handleSelectUF(event: ChangeEvent<HTMLSelectElement>) {
         const uf = event.target.value;
 
@@ -144,14 +180,39 @@ const CreatedPoint = () => {
             data.append('image', selectedFile);
         }
 
-        await api.post('points', data);
+        Validation.isValid({ 
+            name: name,
+            email: email,
+            whatsapp: whatsapp,
+            uf: uf, 
+            city: city, 
+            latitude: latitude,
+            longitude: longitude,
+            items: items
+        })
+        .then( async valid => {
+            if(valid){
+                setErrorForm('1'); 
 
-        alert('ponto de coleta criado');
+                await api.post('points', data);
 
-        history.push('/');
+                setErrorForm('10');
+
+                setTimeout(() => {
+                    history.push('/');
+                }, 3000);
+
+            }else{
+                setErrorForm('0'); 
+                console.log(name);   
+            }
+        });
+
+
     }
 
     return (
+        <>
         <div id="page-create-point">
 
             <header>
@@ -161,7 +222,7 @@ const CreatedPoint = () => {
                 </Link>
             </header>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} >
                 <h1>Cadastro de <br /> ponto de coleta </h1>
 
                 <Dropzone onFileUploaded={setSelectedFile} />
@@ -260,11 +321,18 @@ const CreatedPoint = () => {
                     </ul>
                 </fieldset>
 
+                <div style={ (errorForm !== '0') ? {display: 'none'} : {marginTop: 50} }>
+                    <p style={{color: 'red'}}> <FiAlertCircle />  Por favor, preencha todos os campos corretamente. </p>
+                </div>
                 <button type="submit">
                     Cadastrar ponto de coleta
                 </button>
             </form>
         </div>
+        <div  style={ (errorForm === '10') ? {} : {display: 'none'} }>
+            <Success />
+        </div>
+        </>
     );
 }
 

@@ -17,6 +17,7 @@ routes.get('/items', itemsController.index);
 
 routes.post(
     '/points', 
+    upload.single('image'),
     celebrate({
         body: Joi.object().keys({
             name: Joi.string().required(),
@@ -30,8 +31,7 @@ routes.post(
         })
     }, {
         abortEarly: false
-    }),
-    upload.single('image'), 
+    }), 
     pointsController.create);
 routes.get('/points', pointsController.index);
 routes.get('/points/:id', pointsController.show);
