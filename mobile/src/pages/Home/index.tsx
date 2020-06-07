@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Feather } from '@expo/vector-icons';
-import { StyleSheet, ImageBackground, Text, View, Image } from 'react-native';
+import { StyleSheet, ImageBackground, Text, View, Image, Alert } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import RNPickerSelect from 'react-native-picker-select';
@@ -21,6 +21,7 @@ const Home = () => {
 
   const [selectedUf, setSelectedUf] = useState('0');
   const [selectedCity, setSelectedCity] = useState('0');
+  const [errorForm, setErrorForm] = useState('1');
 
   const navigation = useNavigation();
 
@@ -46,6 +47,7 @@ const Home = () => {
 
 
   function HandleNavigationToPoint() {
+    setErrorForm('1');
     navigation.navigate('Points',{
       selectedUf,
       selectedCity
@@ -71,7 +73,7 @@ const Home = () => {
           onValueChange={(value) => setSelectedUf(value)}
           placeholder={{
             label: 'Seleione uma UF',
-            value: null,
+            value: '0',
           }}
           items={
             ufs.map(uf => (
@@ -85,7 +87,7 @@ const Home = () => {
           onValueChange={(value) => setSelectedCity(value)}
           placeholder={{
             label: 'Seleione uma cidade',
-            value: null,
+            value: '0',
           }}
           items={
             cities.map(city => (
@@ -95,8 +97,14 @@ const Home = () => {
         />
       </View>
 
+      <View style={(errorForm === '0') ? styles.errorContainer : { display: 'none'}}>
+        <Text style={styles.errorText}>
+        Por favor, selecione sua UF e cidade antes de prosseguir
+        </Text>
+      </View>
+
       <View style={styles.footer}>
-        <RectButton style={styles.button} onPress={HandleNavigationToPoint}>
+        <RectButton style={styles.button} onPress={() => ((selectedCity !== '0') && (selectedUf !== '0')) ? HandleNavigationToPoint() : setErrorForm('0')}>
           <View style={styles.buttonIcon}>
             <Text>
               <Feather name="arrow-right" color="#FFF" size={24} />
@@ -157,6 +165,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
   },
 
+  errorContainer: {
+    paddingVertical: 5,
+  },
+  
+  errorText: {
+    color: 'red',
+
+  },
 
   button: {
     backgroundColor: '#34CB79',
