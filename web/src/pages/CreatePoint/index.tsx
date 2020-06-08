@@ -41,7 +41,7 @@ const CreatedPoint = () => {
             .email()
             .required(),
         whatsapp: yup
-            .number()
+            .string()
             .required(),
         uf: yup
             .string()
@@ -256,7 +256,7 @@ const CreatedPoint = () => {
                         <div className="field">
                             <label htmlFor="whatasapp"> Whatasapp </label>
                             <input
-                                type="number"
+                                type="text"
                                 name="whatsapp"
                                 id="whatsapp"
                                 onChange={handleInputChange}
