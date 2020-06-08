@@ -7,6 +7,15 @@
   Também foi desenvolvido os frontends web e mobile para essa api: neles utilizamos uma integração com mapa, para que o local do ponto de coleta seja marcadoo e encontrado com mais exatidão; e também uma api do IBGE que permite ao usuário selecionar a UF e suas respectivas cidades.
 </div>
 
+<div style="margin: 10px">
+  #####Funcionalidades
+    <li> Cadastro do ponto de coleta com upload de imagem; 
+    <li> Cadastro do ponto de coleta com possibilidade de seleconar no mapa o endereço (recolhendo a latitude e longitude do ponto); 
+    <li> Cadastro do ponto de coleta com select integrado com api o IBGE, assim fornecendo todas as UF e suas respectivas cidades existentes;
+    <li> Busca de pontos de coleta por cidade e por item coletado;
+    <li> Possibilidade de entrar em contato com o ponto de coleta por whatsapp, redirecionando através do próprio app;
+    <li> Possibilidade de entrar em contato com o ponto de coleta por email, redirecionando através do próprio app. 
+</div>
 
 
 ## 🛠 Ambiente de Desenvolvimento
@@ -64,16 +73,29 @@ $ npm install @types/celebrate
 ```
 
 
-## 🚀 Protótipo
+## 🎞️ Protótipo
 
-<a href="">
-  Figma
+<a href="https://www.figma.com/file/QeJnO1XeVNzFLaHB1Nky39/Ecoleta-(Copy)">
+  <li> Figma
 </a>
 
 
-## 🚀 Resultado final
+## 🥰 Resultado final
+
+### - Web
+  <h1 align="center">
+    <img alt="Home" title="Home" align="center" height=120px src="./assets/homeWeb.png" />
+    <img alt="Cadastro" title="Cadastro" align="center" height=120px src="./assets/cadastrarWeb.gif" />
+    <img alt="Sucesso" title="Sucesso" align="center" height=120px src="./assets/sucessoWeb.png" />
+  </h1>
 
 
+### - Mobile
+  <h1 align="center">
+    <img alt="Home" title="Home" align="center" width=120px src="./assets/homeMobile.png" />
+    <img alt="Pontos" title="Pontos" align="center" width=120px src="./assets/pontoMobile.png" />
+    <img alt="Detalhes" title="Detalhes" align="center" width=120px src="./assets/detalhesMobile.png" />
+  </h1>
 
 
 Feito com carinho e ❤️ por <a href="https://www.linkedin.com/in/nurian-coelho-04121618b"> Nurian 👋🏽 </a>
