@@ -7,15 +7,14 @@
   Também foi desenvolvido os frontends web e mobile para essa api: neles utilizamos uma integração com mapa, para que o local do ponto de coleta seja marcadoo e encontrado com mais exatidão; e também uma api do IBGE que permite ao usuário selecionar a UF e suas respectivas cidades.
 </div>
 
-<div style="margin: 10px">
-  #####Funcionalidades
-    <li> Cadastro do ponto de coleta com upload de imagem; 
-    <li> Cadastro do ponto de coleta com possibilidade de seleconar no mapa o endereço (recolhendo a latitude e longitude do ponto); 
-    <li> Cadastro do ponto de coleta com select integrado com api o IBGE, assim fornecendo todas as UF e suas respectivas cidades existentes;
-    <li> Busca de pontos de coleta por cidade e por item coletado;
-    <li> Possibilidade de entrar em contato com o ponto de coleta por whatsapp, redirecionando através do próprio app;
-    <li> Possibilidade de entrar em contato com o ponto de coleta por email, redirecionando através do próprio app. 
-</div>
+##### Funcionalidades
+  <li> Cadastro do ponto de coleta com upload de imagem; 
+  <li> Cadastro do ponto de coleta com possibilidade de seleconar no mapa o endereço (recolhendo a latitude e longitude do ponto); 
+  <li> Cadastro do ponto de coleta com select integrado com api o IBGE, assim fornecendo todas as UF e suas respectivas cidades existentes;
+  <li> Busca de pontos de coleta por cidade e por item coletado;
+  <li> Possibilidade de entrar em contato com o ponto de coleta por whatsapp, redirecionando através do próprio app;
+  <li> Possibilidade de entrar em contato com o ponto de coleta por email, redirecionando através do próprio app. 
+
 
 
 ## 🛠 Ambiente de Desenvolvimento
